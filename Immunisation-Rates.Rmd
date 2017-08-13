@@ -9,11 +9,18 @@ output: ioslides_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## R Markdown
+## Immunisation Rates in Australia
 
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+There are net laws in Australia limiting financial assistance to families where children are not immunised. It is important we understand the rate of immunisation in this country.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+The statistics in this presentation were gathered from the [Immunise Australia Program](http://www.immunise.health.gov.au/) webpage from the Australian Government - Department of Health.
+
+## Load the data
+
+```{r loaddata}
+library("xlsx", lib.loc="~/R/win-library/3.4")
+
+```
 
 ## Slide with Bullets
 
