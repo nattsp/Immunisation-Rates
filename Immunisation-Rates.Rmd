@@ -15,28 +15,20 @@ There are net laws in Australia limiting financial assistance to families where 
 
 The statistics in this presentation were gathered from the [Immunise Australia Program](http://www.immunise.health.gov.au/) webpage from the Australian Government - Department of Health.
 
-## Load the data
+## Plot data
 
-```{r loaddata}
-library("xlsx", lib.loc="~/R/win-library/3.4")
-
+```{r, echo=FALSE, message=FALSE}
+library(plotly)
+load(".\\data\\processed\\immDataAll.Rda")
+#head(immData)
+plot_ly(immDataAll, x = ~PCT_Fully, y = ~PCT_DTP, type = "scatter")
 ```
 
-## Slide with Bullets
+## Plot with dates
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
-
-## Slide with R Output
-
-```{r cars, echo = TRUE}
-summary(cars)
+```{r, echo=FALSE, message=FALSE}
+library(plotly)
+load(".\\data\\processed\\immDataAll.Rda")
+#head(immData)
+plot_ly(immDataAll, x = ~Time_Period, y = ~PCT_Fully, type = "scatter")
 ```
-
-## Slide with Plot
-
-```{r pressure}
-plot(pressure)
-```
-
