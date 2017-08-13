@@ -5,30 +5,45 @@ date: "13 August 2017"
 output: ioslides_presentation
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, echo=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library(plotly)
+library(dplyr)
 ```
 
 ## Immunisation Rates in Australia
 
-There are net laws in Australia limiting financial assistance to families where children are not immunised. It is important we understand the rate of immunisation in this country.
+There are new laws in Australia limiting financial assistance to families where children are not immunised. It is important we understand the rate of immunisation in this country.
 
 The statistics in this presentation were gathered from the [Immunise Australia Program](http://www.immunise.health.gov.au/) webpage from the Australian Government - Department of Health.
 
-## Plot data
+##  Diphtheria, tetanus and pertussis
+
+As we compare the percentage of DTP or Diphtheria, tetanus and pertussis (whooping cough) we can see in the bottom line that the rate of full vaccinations and DTP vaccinations allign closely. There are a smaller number of cases where DTP has been given, yet other vaccinations are not complete.
 
 ```{r, echo=FALSE, message=FALSE}
-library(plotly)
 load(".\\data\\processed\\immDataAll.Rda")
-#head(immData)
 plot_ly(immDataAll, x = ~PCT_Fully, y = ~PCT_DTP, type = "scatter")
 ```
 
-## Plot with dates
+## MMR Vaccinations
+
+MMR has been the most controversial vaccination in recent years. Not surprisingly the MMR vaccination rate is closely correlated to the total vaccination rate.  People that give MMR are likely to have completed all vaccinations.
 
 ```{r, echo=FALSE, message=FALSE}
-library(plotly)
-load(".\\data\\processed\\immDataAll.Rda")
-#head(immData)
-plot_ly(immDataAll, x = ~Time_Period, y = ~PCT_Fully, type = "scatter")
+MMR <- immDataAll[,c("PCT_MMR","PCT_Fully")]
+MMR <- filter(MMR, PCT_MMR>0)
+plot_ly(MMR, x = ~PCT_Fully, y = ~PCT_MMR, type = "scatter")
+```
+
+
+
+## Fully Vaccination
+
+The rate of full vaccination changes over time. The box plot below looks at all age groups and regions across Australia. We can see that in the latter half of 2016 3/4 of the regions had a full vaccination rate of over 92%.
+
+```{r, echo=FALSE, message=FALSE}
+immDataFac <- immDataAll[,c("PCT_Fully", "Time_Period")]
+immDataFac$Time_Period <- factor(immDataFac$Time_Period, ordered = TRUE)
+plot_ly(immDataFac, y = ~PCT_Fully, color = ~Time_Period, type = "box")
 ```
