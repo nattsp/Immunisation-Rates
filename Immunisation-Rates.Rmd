@@ -38,7 +38,7 @@ plot_ly(MMR, x = ~PCT_Fully, y = ~PCT_MMR, type = "scatter")
 
 
 
-## Fully Vaccination
+## Fully Vaccinated
 
 The rate of full vaccination changes over time. The box plot below looks at all age groups and regions across Australia. We can see that in the latter half of 2016 3/4 of the regions had a full vaccination rate of over 92%.
 
